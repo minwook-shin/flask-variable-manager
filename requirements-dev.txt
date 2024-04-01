@@ -1,0 +1,4 @@
+flasgger==0.9.7b2
+build==1.2.1
+twine==5.0.0
+pytest
