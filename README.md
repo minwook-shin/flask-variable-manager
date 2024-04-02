@@ -59,6 +59,8 @@ This route allows you to get all user-defined variables.
 
 It accepts a GET request at the `/vm/var` endpoint. 
 
+(or `vm/vars` for the multiple count of the variable)
+
 ## License
 
 This project is licensed under the terms of the MIT license.

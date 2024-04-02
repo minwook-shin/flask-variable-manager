@@ -58,6 +58,33 @@ def define_routes(app):
         g.local[key] = value
         return jsonify({'message': 'The variable has been set successfully.'})
 
+    @app.route('/vm/vars', methods=['POST'])
+    def set_variables():
+        """
+        ---
+        tags:
+          - Variables
+        summary: Set multiple user-defined variables
+        description: This endpoint allows you to set multiple user-defined variables.
+        parameters:
+          - in: body
+            name: variables
+            description: The variables to set.
+            schema:
+              type: object
+              additionalProperties:
+                type: string
+        responses:
+          200:
+            description: The variables have been set successfully.
+        """
+        variables = request.get_json()
+
+        for key, value in variables.items():
+            g.local[key] = value
+
+        return jsonify({'message': 'The variables have been set successfully.'})
+
     @app.route('/vm/var', methods=['GET'])
     def get_variables():
         """
