@@ -61,6 +61,14 @@ It accepts a GET request at the `/vm/var` endpoint.
 
 (or `vm/vars` for the multiple count of the variable)
 
+### Remove a user-defined variable
+
+This route allows you to remove a user-defined variable.
+
+It accepts a DELETE request at the `/vm/var` endpoint.
+
+(or `vm/vars` for the multiple count of the variable)
+
 ## License
 
 This project is licensed under the terms of the MIT license.

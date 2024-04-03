@@ -105,6 +105,45 @@ def define_routes(app):
         """
         return jsonify(g.local.to_dict())
 
+    @app.route('/vm/vars', methods=['DELETE'])
+    def clear_variables():
+        """
+        ---
+        tags:
+          - Variables
+        summary: Clear all user-defined variables
+        description: This endpoint allows you to clear all user-defined variables.
+        responses:
+          200:
+            description: All user-defined variables have been cleared.
+        """
+        g.local.to_dict().clear()
+        return jsonify({'message': 'All user-defined variables have been cleared.'})
+
+    @app.route('/vm/var/<key>', methods=['DELETE'])
+    def clear_variable(key):
+        """
+        ---
+        tags:
+          - Variables
+        summary: Clear a user-defined variable
+        description: This endpoint allows you to clear a user-defined variable.
+        parameters:
+          - in: path
+            name: key
+            type: string
+            required: true
+            description: The key of the variable to clear.
+        responses:
+          200:
+            description: The variable has been cleared successfully.
+        """
+        try:
+            del g.local.to_dict()[key]
+            return jsonify({'message': 'The variable has been cleared successfully.'})
+        except KeyError:
+            return jsonify({'message': 'The variable does not exist.'}), 404
+
 
 class VariableManagerExtension:
     def __init__(self, app=None):
