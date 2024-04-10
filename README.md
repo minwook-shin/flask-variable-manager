@@ -69,6 +69,20 @@ It accepts a DELETE request at the `/vm/var` endpoint.
 
 (or `vm/vars` for the multiple count of the variable)
 
+### Run a Python script and return the result
+
+This route allows you to run a Python script and return the result.
+
+It accepts a POST request at the `/py/runner` endpoint.
+
+```python
+import platform
+from flask import g
+data = additionalProp + "-" + platform.platform()
+g.local['saved_user_variable'] = data
+return data
+```
+
 ## License
 
 This project is licensed under the terms of the MIT license.

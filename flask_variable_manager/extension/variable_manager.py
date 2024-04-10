@@ -1,4 +1,5 @@
 import importlib
+from textwrap import indent
 
 from flask import g, jsonify, request, render_template_string
 
@@ -143,6 +144,42 @@ def define_routes(app):
             return jsonify({'message': 'The variable has been cleared successfully.'})
         except KeyError:
             return jsonify({'message': 'The variable does not exist.'}), 404
+
+    @app.route('/py/runner', methods=['POST'])
+    def run_python_code():
+        """
+        ---
+        tags:
+          - Python
+        summary: Run Python code and return the result
+        description: This endpoint allows you to run Python code and return the result.
+        parameters:
+          - in: body
+            name: code
+            type: string
+            required: true
+            description: The Python code to run.
+        responses:
+          200:
+            description: The code has been executed successfully and the result is returned.
+            schema:
+              type: object
+              properties:
+                result:
+                  type: string
+                  description: The result of the executed code.
+        """
+        code = request.get_data(as_text=True)
+        wrapped_code = f"def _wrapped():\n{indent(code, '  ')}\nresult = _wrapped()"
+        local_vars = g.local.to_dict()
+        exec(wrapped_code, local_vars)
+        result = local_vars.get('result')
+        del local_vars["_wrapped"]
+        del local_vars["result"]
+        unwanted_keys = [key for key in local_vars if key.startswith('__') and key.endswith('__')]
+        for key in unwanted_keys:
+            del local_vars[key]
+        return jsonify({'result': str(result)})
 
 
 class VariableManagerExtension:

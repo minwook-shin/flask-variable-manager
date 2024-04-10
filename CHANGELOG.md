@@ -2,6 +2,23 @@
 
 ## [Unreleased]
 
+## 0.3.0 - 2024-04-10
+### Added
+- Added `py/runner` POST Method to run a Python script
+  - access the variable manager to get and set variables
+  - return and save variables value
+
+```python
+# import packages
+import platform
+from flask import g
+# used to get the value of a user-defined variable and built-in package
+data = additionalProp + "-" + platform.platform()
+# save the value of the user-defined variable or return variable
+g.local['saved_user_variable'] = data
+return data
+```
+
 ## 0.2.0 - 2024-04-03
 ### Added
 - Added `vm/vars` DELETE Method to clear all user-defined variables

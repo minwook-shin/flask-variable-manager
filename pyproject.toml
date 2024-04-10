@@ -12,7 +12,7 @@ include = ['flask_variable_manager*']
 
 [project]
 name = "flask-variable-manager"
-version = "0.2.0"
+version = "0.3.0"
 description = "Create a variable manager in flask, enter values in python, and use values on the jinja template."
 authors = [
     { name = "minwook-shin", email = "minwook0106@gmail.com" },
