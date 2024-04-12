@@ -2,6 +2,13 @@
 
 ## [Unreleased]
 
+## 0.3.1 - 2024-04-12
+
+### Fixed
+
+- Fixed referencing flask versions as outdated.
+    - Updated the `flask` version to `3.0.3`.
+
 ## 0.3.0 - 2024-04-10
 ### Added
 - Added `py/runner` POST Method to run a Python script
