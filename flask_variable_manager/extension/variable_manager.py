@@ -181,6 +181,79 @@ def define_routes(app):
             del local_vars[key]
         return jsonify({'result': str(result)})
 
+    @app.route('/py/install', methods=['POST'])
+    def install_python_package():
+        """
+        ---
+        tags:
+          - Python
+        summary: Install a Python package
+        description: This endpoint allows you to install a Python package.
+        parameters:
+          - in: formData
+            name: package_name
+            type: string
+            required: true
+            description: The name of the package to install.
+        responses:
+          200:
+            description: The package has been installed successfully.
+        """
+        package_name = request.form.get('package_name')
+        import subprocess
+        for package_name in package_name.split('\n'):
+            subprocess.run(['pip', 'install', package_name])
+        return jsonify({'message': 'The package has been installed successfully.'})
+
+    @app.route('/py/uninstall', methods=['POST'])
+    def uninstall_python_package():
+        """
+        ---
+        tags:
+          - Python
+        summary: Uninstall a Python package
+        description: This endpoint allows you to uninstall a Python package.
+        parameters:
+          - in: formData
+            name: package_name
+            type: string
+            required: true
+            description: The name of the package to uninstall.
+        responses:
+          200:
+            description: The package has been uninstalled successfully.
+        """
+        package_name = request.form.get('package_name')
+        import subprocess
+        for package_name in package_name.split('\n'):
+            subprocess.run(['pip', 'uninstall', '-y', package_name])
+        return jsonify({'message': 'The package has been uninstalled successfully.'})
+
+    @app.route('/py/packages', methods=['GET'])
+    def get_python_packages():
+        """
+        ---
+        tags:
+          - Python
+        summary: Get all installed Python packages
+        description: This endpoint allows you to get all installed Python packages.
+        responses:
+          200:
+            description: The installed packages have been retrieved successfully.
+            schema:
+              type: object
+              properties:
+                packages:
+                  type: array
+                  items:
+                    type: string
+                  description: The installed packages.
+        """
+        import subprocess
+        result = subprocess.run(['pip', 'freeze'], stdout=subprocess.PIPE)
+        packages = result.stdout.decode('utf-8').split('\n')
+        return jsonify({'packages': packages})
+
 
 class VariableManagerExtension:
     def __init__(self, app=None):

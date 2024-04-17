@@ -2,6 +2,14 @@
 
 ## [Unreleased]
 
+## 0.4.0 - 2024-04-17
+
+### Added
+
+- third-party python packages installation and uninstallation
+  - added `py/packages` GET Method to check the list of python packages
+  - added `py/install`, `py/uninstall` POST Method to install and uninstall a python package
+
 ## 0.3.1 - 2024-04-12
 
 ### Fixed

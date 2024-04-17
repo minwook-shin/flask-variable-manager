@@ -83,6 +83,18 @@ g.local['saved_user_variable'] = data
 return data
 ```
 
+### Check the list of packages
+
+This route allows you to check the list of python packages.
+
+It accepts a GET request at the `/py/packages` endpoint.
+
+### install and uninstall a package
+
+This route allows you to install and uninstall a python package.
+
+It accepts a POST request at the `/py/install`, `/py/uninstall` endpoint.
+
 ## License
 
 This project is licensed under the terms of the MIT license.
