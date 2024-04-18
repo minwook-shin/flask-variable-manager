@@ -2,6 +2,12 @@
 
 ## [Unreleased]
 
+## 0.4.1 - 2024-04-18
+
+### Added
+
+- add documentation for the all methods in the API
+
 ## 0.4.0 - 2024-04-17
 
 ### Added

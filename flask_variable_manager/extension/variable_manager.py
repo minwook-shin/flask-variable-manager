@@ -8,6 +8,7 @@ def define_routes(app):
     @app.route('/vm/render', methods=['POST'])
     def render_template():
         """
+        vm/render: Render a string as a Jinja2 template
         ---
         tags:
           - Rendering
@@ -33,6 +34,7 @@ def define_routes(app):
     @app.route('/vm/var', methods=['POST'])
     def set_variable():
         """
+        /vm/var: Set a user-defined variable
         ---
         tags:
           - Variables
@@ -62,6 +64,7 @@ def define_routes(app):
     @app.route('/vm/vars', methods=['POST'])
     def set_variables():
         """
+        /vm/vars: Set multiple user-defined variables
         ---
         tags:
           - Variables
@@ -89,6 +92,7 @@ def define_routes(app):
     @app.route('/vm/var', methods=['GET'])
     def get_variables():
         """
+        /vm/var: Get all user-defined variables
         ---
         tags:
           - Variables
@@ -109,6 +113,7 @@ def define_routes(app):
     @app.route('/vm/vars', methods=['DELETE'])
     def clear_variables():
         """
+        /vm/vars: Clear all user-defined variables
         ---
         tags:
           - Variables
@@ -124,6 +129,7 @@ def define_routes(app):
     @app.route('/vm/var/<key>', methods=['DELETE'])
     def clear_variable(key):
         """
+        /vm/var/{key}: Clear a user-defined variable
         ---
         tags:
           - Variables
@@ -148,6 +154,7 @@ def define_routes(app):
     @app.route('/py/runner', methods=['POST'])
     def run_python_code():
         """
+        /py/runner: Run Python code and return the result
         ---
         tags:
           - Python
@@ -184,6 +191,7 @@ def define_routes(app):
     @app.route('/py/install', methods=['POST'])
     def install_python_package():
         """
+        /py/install: Install a Python package
         ---
         tags:
           - Python
@@ -208,6 +216,7 @@ def define_routes(app):
     @app.route('/py/uninstall', methods=['POST'])
     def uninstall_python_package():
         """
+        /py/uninstall: Uninstall a Python package
         ---
         tags:
           - Python
@@ -232,6 +241,7 @@ def define_routes(app):
     @app.route('/py/packages', methods=['GET'])
     def get_python_packages():
         """
+        /py/packages: Get all installed Python packages
         ---
         tags:
           - Python
